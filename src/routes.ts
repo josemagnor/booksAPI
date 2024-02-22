@@ -1,21 +1,18 @@
 import { FastifyInstance, FastifyPluginOptions, FastifyRequest, FastifyReply } from "fastify";
+import { CreateBookController, DeleteBookController, UpdateBookController,  GetBookController } from "./controllers/bookController";
 
 export async function routes(fastifyInstance:FastifyInstance, fastifyOptions:FastifyPluginOptions) {
 
-    fastifyInstance.post("/api/book", async(request:FastifyRequest,response:FastifyReply) => {
-        return {hello:"api/create"}
+    fastifyInstance.post("/api/book", async(request:FastifyRequest,reply:FastifyReply) => {
+        return new CreateBookController().handle(request,reply)
     })
-    
-    fastifyInstance.get("/api/book", async(request:FastifyRequest,response:FastifyReply) => {
-        return {hello:"api/get"}
+    fastifyInstance.get("/api/book", async(request:FastifyRequest,reply:FastifyReply) => {
+        return new GetBookController().handle(request,reply)
     })
-
-    fastifyInstance.put("/api/book", async(request:FastifyRequest,response:FastifyReply) => {
-        return {hello:"api/update"}
+    fastifyInstance.put("/api/book", async(request:FastifyRequest,reply:FastifyReply) => {
+        return new UpdateBookController().handle(request,reply)
     })
-
-    fastifyInstance.delete("/api/book", async(request:FastifyRequest,response:FastifyReply) => {
-        return {hello:"api/delete"}
+    fastifyInstance.delete("/api/book", async(request:FastifyRequest,reply:FastifyReply) => {
+        return new DeleteBookController().handle(request,reply)
     })
-
 }
