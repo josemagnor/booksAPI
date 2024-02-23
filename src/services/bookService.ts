@@ -1,4 +1,4 @@
-import { CreateBookProps, GetBookProps } from "../interfaces/interfaces"
+import { CreateBookProps, DeleteBookProps, GetBookProps, UpdateBookProps } from "../interfaces/interfaces"
 import prismaClient from "../prisma/prisma"
 
 class CreateBookService{
@@ -21,7 +21,7 @@ class GetAllBooksService{
 
 class GetBookService{
     async handle({id}:GetBookProps){
-       const book = await prismaClient.book.findUnique({
+       const book = await prismaClient.book.findFirst({
         where:{
             id:id
         }
@@ -31,14 +31,33 @@ class GetBookService{
 }
 
 class UpdateBookService{
-    async handle(){
-        return(console.log("upadate book service"))
-    }
+    async handle({id,title,author,genre}:UpdateBookProps){
+        const book = await prismaClient.book.update({
+         where:{
+             id:id
+         },
+         data:{
+             title,
+             author,
+             genre
+         }
+        })
+        return book;
+     }
 }
 
 class DeleteBookService{
-    async handle(){
-        return(console.log("delete book service"))
+    async handle({id}:DeleteBookProps){
+       const findBook = await prismaClient.book.findFirst({
+        where:{
+            id:id
+        }
+       }) 
+       const book = await prismaClient.book.delete({
+        where:{
+            id:findBook?.id
+        }
+       })
     }
 }
 
