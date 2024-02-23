@@ -4,7 +4,7 @@ Este é um projeto de um crud API backend de livros escrito em typescript usando
 
 ## Requisitos
 
-- Node 20.11.1
+- Node
 - Mongodb
 - Prisma
 
@@ -23,13 +23,14 @@ O servidor irá rodar na porta 3333 por padrão. Você pode usar um cliente HTTP
 ### Endpoints
 
 - `GET /books`: Retorna todos os livros cadastrados no banco de dados.
-- `GET /books/:id`: Retorna um livro específico pelo seu id.
-- `POST /books`: Cria um novo livro no banco de dados. O corpo da requisição deve ter o seguinte formato:
+- `GET /book`: Retorna um livro específico pelo seu id.
+- `POST /book`: Cria um novo livro no banco de dados. O corpo da requisição deve ter o seguinte formato:
+- `PUT /book`: Atualiza um livro presente no banco de dados:
+- `DELETE /book`: Deleta um livro do banco de dados
 
 ```json
 {
   "title": "O nome do livro",
   "author": "O nome do autor",
   "genre": "O gênero do livro",
-  "pages": "O número de páginas do livro"
 }
