@@ -18,7 +18,8 @@ Este é um projeto de um crud API backend de livros escrito em typescript usando
 
 ## Uso
 
-O servidor irá rodar na porta 3333 por padrão. Você pode usar um cliente HTTP como Postman ou curl para fazer as requisições para a API.
+- O servidor irá rodar na porta 3333 por padrão. Você pode usar um cliente HTTP como Postman ou curl para fazer as requisições para a API.
+- Testes foram realizados utilizando o ThunderClient do VsCode
 
 ### Endpoints
 
