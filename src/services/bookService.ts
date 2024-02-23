@@ -1,8 +1,13 @@
+import { error } from "console"
 import { CreateBookProps, DeleteBookProps, GetBookProps, UpdateBookProps } from "../interfaces/interfaces"
 import prismaClient from "../prisma/prisma"
 
 class CreateBookService{
     async handle({title, author, genre}:CreateBookProps){
+        if(!title || !author || !genre){
+            throw new Error("Preencha os campos corretamente")
+        }
+
         const book = await prismaClient.book.create({
             data:{title,
                 author,
@@ -21,6 +26,10 @@ class GetAllBooksService{
 
 class GetBookService{
     async handle({id}:GetBookProps){
+        if(!id){
+            throw new Error("Preencha os campos corretamente")
+        }
+
        const book = await prismaClient.book.findFirst({
         where:{
             id:id
@@ -32,6 +41,10 @@ class GetBookService{
 
 class UpdateBookService{
     async handle({id,title,author,genre}:UpdateBookProps){
+        if(!id || !title || !author || !genre){
+            throw new Error("Preencha os campos corretamente")
+        }
+
         const book = await prismaClient.book.update({
          where:{
              id:id
@@ -48,6 +61,10 @@ class UpdateBookService{
 
 class DeleteBookService{
     async handle({id}:DeleteBookProps){
+        if(!id){
+            throw new Error("Preencha os campos corretamente")
+        }
+
        const findBook = await prismaClient.book.findFirst({
         where:{
             id:id
